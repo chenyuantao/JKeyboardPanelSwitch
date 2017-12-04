@@ -71,16 +71,17 @@ public class ViewUtil {
         //noinspection SimplifiableIfStatement
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             return (activity.getWindow().getAttributes().flags &
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS) != 0;
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS) != 0 ||
+                    activity.getWindow().getDecorView().getSystemUiVisibility() == (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         }
         return false;
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    static boolean isFitsSystemWindows(final Activity activity){
+    static boolean isFitsSystemWindows(final Activity activity) {
         //noinspection SimplifiableIfStatement
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            return ((ViewGroup)activity.findViewById(android.R.id.content)).getChildAt(0).
+            return ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0).
                     getFitsSystemWindows();
         }
 
