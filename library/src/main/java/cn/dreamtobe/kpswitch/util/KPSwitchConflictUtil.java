@@ -127,7 +127,7 @@ public class KPSwitchConflictUtil {
      */
     public static void attach(final View panelLayout,
                               final View focusView,
-                              /** Nullable **/ final SwitchClickListener switchClickListener,
+                              /** Nullable **/final SwitchClickListener switchClickListener,
                               SubPanelAndTrigger... subPanelAndTriggers) {
         final Activity activity = (Activity) panelLayout.getContext();
 
@@ -274,7 +274,8 @@ public class KPSwitchConflictUtil {
     }
 
     static boolean isHandleByPlaceholder(final Activity activity) {
-        return isHandleByPlaceholder(ViewUtil.isFullScreen(activity),
+        boolean isHandle = activity.getIntent().getBooleanExtra("isHandleByPlaceholder", false);
+        return isHandle || isHandleByPlaceholder(ViewUtil.isFullScreen(activity),
                 ViewUtil.isTranslucentStatus(activity), ViewUtil.isFitsSystemWindows(activity));
     }
 
